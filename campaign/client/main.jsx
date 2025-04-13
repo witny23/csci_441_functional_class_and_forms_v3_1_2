@@ -1,13 +1,12 @@
 import React from 'react';
 import { createRoot } from 'react-dom/client';
 import {Meteor} from 'meteor/meteor';
-import {Candidates} from './../imports/api/candidates.js'; 
 import {Tracker} from 'meteor/tracker';
 import TitleBar from './../imports/ui/TitleBar.js'; 
-import Footer from './../imports/ui/Footer.js';
+import NavButtons from '../imports/ui/instructions/NavButtons.js';
 import AddCandidates from './../imports/ui/AddCandidates.js';
-import Overview from '../imports/ui/instructions/Overview.js';
-import Candidate from './../imports/ui/Candidate.js';  
+import {Candidates} from './../imports/api/candidates.js'; 
+import RenderCandidates from './../imports/ui/RenderCandidates.js';  
 
 Meteor.subscribe("candidates_collection");
 
@@ -30,13 +29,11 @@ Meteor.startup(() => {
 
     let jsx = (
       <>
-        <Overview />
-        <hr />
-        <TitleBar title_prop={title} />
-        <AddCandidates />
-        {renderCandidates(candidates)}
-        <hr />
-        <Footer footer_prop={footer_content}/>
+        <NavButtons/>
+
+        <TitleBar titleBar_prop={title}/>
+        <AddCandidates/>
+        <RenderCandidates candidate_prop = {Candidates.find().fetch()}/>
       </>
     );
 
