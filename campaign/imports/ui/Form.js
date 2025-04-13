@@ -1,5 +1,5 @@
 import React, { useState } from 'react'; 
-import {Candidates} from './../api/candidates.js';
+import {Candidates} from '../api/candidates.js';
 
 export default AddCandidates = () => {
   {/* The following is used to hold and set the new candidate's name */}

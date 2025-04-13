@@ -10,22 +10,11 @@ import RenderCandidates from './../imports/ui/RenderCandidates.js';
 
 Meteor.subscribe("candidates_collection");
 
-const renderCandidates = (candidateObject) => {
-  let candidateInfo = candidateObject.map((candidate) => {
-    return <Candidate key={candidate._id} candidate_prop={candidate} />;
-  });
-  return candidateInfo;
-};
-
-
-
 Meteor.startup(() => {
   const root = createRoot(document.getElementById('react-target'));
 
   Tracker.autorun(() => {
-    let candidates = Candidates.find().fetch();
     let title = 'The big Campaign';
-    let footer_content = 'my footer';
 
     let jsx = (
       <>
