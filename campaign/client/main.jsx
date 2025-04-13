@@ -1,10 +1,10 @@
 import React from 'react';
-// import ReactDom from 'react-dom';
 import { createRoot } from 'react-dom/client';
 import {Meteor} from 'meteor/meteor';
 import {Candidates} from './../imports/api/candidates.js'; 
 import {Tracker} from 'meteor/tracker';
 import TitleBar from './../imports/ui/TitleBar.js'; 
+import Footer from './../imports/ui/Footer.js';
 import AddCandidates from './../imports/ui/AddCandidates.js';
 import Overview from '../imports/ui/instructions/Overview.js';
 import Candidate from './../imports/ui/Candidate.js';  
@@ -35,6 +35,8 @@ Meteor.startup(() => {
         <TitleBar title_prop={title} />
         <AddCandidates />
         {renderCandidates(candidates)}
+        <hr />
+        <Footer footer_prop={footer_content}/>
       </>
     );
 

@@ -1,32 +1,33 @@
-import React from 'react'; 
-import {Candidates} from '../api/candidates.js'; // Part 2 import
+import React, { useState } from 'react'; 
+import {Candidates} from './../api/candidates.js';
 
-export default class AddCandidates extends React.Component {
+export default AddCandidates = () => {
+  const [candidateName_state, setCandidateName] = useState('');
 
-  processFormDataFunction(event){
+
+  const processFormDataFunction = (event) => {
     event.preventDefault();
-    let candidateName = event.target.formInputNameAttrubute.value;
   
-    if(candidateName){
-      event.target.formInputNameAttrubute.value = '';
+    if(candidateName_state){
+      setCandidateName('');
       Candidates.insert({
-          name: candidateName,
+          name: candidateName_state,
           votes: 0,
       });
     };
   };
-  
-
-  render(){
     return (
       <>
-        <form onSubmit={this.processFormDataFunction.bind(this)}>
-          <input type='text' name='formInputNameAttrubute' placeholder='Candidate Name' />
+        <form onSubmit={processFormDataFunction}>
+          <label>
+            <input  type='text' 
+                    value={candidateName_state}
+                    placeholder='Candidate Name'
+                    onChange={event => setCandidateName(event.target.value)} />
+          </label>
           <button>Add Candidate</button>
         </form>
         <hr />
       </>
     )
-  }
-
 };

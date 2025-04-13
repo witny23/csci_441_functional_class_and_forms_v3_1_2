@@ -1,5 +1,5 @@
 
-git Lecture: functional component conversion 
+git Lecture: functional component conversion complete
 
 GOALS
 
