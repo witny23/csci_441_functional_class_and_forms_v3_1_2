@@ -1,31 +1,31 @@
-import React from 'react'; 
-import {Candidates} from './../api/candidates.js'; 
+import React from 'react';
+import { Candidates } from './../api/candidates.js';
 
-export default class AddCandidates extends React.Component {
+export default function AddCandidates() {
 
-  processFormDataFunction(event){
+  const processFormDataFunction = (event) => {
     event.preventDefault();
-    let candidateName = event.target.formInputNameAttrubute.value;
+    const candidateName = event.target.formInputNameAttrubute.value;
 
-    if(candidateName){
+    if (candidateName) {
       event.target.formInputNameAttrubute.value = '';
       Candidates.insert({
-          name: candidateName,
-          votes: 0,
+        name: candidateName,
+        votes: 0,
       });
-    };
+    }
   };
 
-
-  render(){
-    return (
-      <>
-        <form onSubmit={this.processFormDataFunction.bind(this)}>
-          <input type='text' name='formInputNameAttrubute' placeholder='Candidate Name' />
-          <button>Add Candidate</button>
-        </form>
-      </>
-    )
-  }
-
-}; 
+  return (
+    <>
+      <form onSubmit={processFormDataFunction}>
+        <input
+          type='text'
+          name='formInputNameAttrubute'
+          placeholder='Candidate Name'
+        />
+        <button>Add Candidate</button>
+      </form>
+    </>
+  );
+}

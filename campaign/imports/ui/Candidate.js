@@ -18,6 +18,8 @@ export default Candidate = (props) => {
                     Candidates.update({_id: props.candidate_prop._id}, {$inc: {votes: -1}})
                 }}>-1</button>
                 {' ' + props.candidate_prop.name} has {props.candidate_prop.votes} vote[s] {' '}
+                | Important Campaign Topic: {props.candidate_prop.topic} {' '}
+                | Party: {props.candidate_prop.party}
             </p>
          </>
       );

@@ -1,5 +1,5 @@
  
-git Lecture: React Forms & Challenge
+git Lecture: React Forms & Challenge Solution
 
 GOALS
 

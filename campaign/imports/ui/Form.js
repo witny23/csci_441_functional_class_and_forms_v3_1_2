@@ -1,33 +1,51 @@
 import React, { useState } from 'react'; 
 import {Candidates} from '../api/candidates.js';
 
-export default AddCandidates = () => {
-  {/* The following is used to hold and set the new candidate's name */}
-  const [candidateName_state, setCandidateName] = useState('');
+export default Form = () => {
 
-  {/* the following is going to handle the submission of the form */}
+  const [candidateName_state, setCandidateName] = useState('');
+const [party_state, setParty] = useState('');
+const [topic_state, setTopic] = useState('');
+
+
   const processFormDataFunction = (event) => {  
-    event.preventDefault(); {/* don't let the page refresh */}
-  
-    if(candidateName_state){  {/* verify that this is not an empty string */}
+    event.preventDefault(); 
+    console.log(party_state);
+    console.log(topic_state);
+    if(candidateName_state){  
       Candidates.insert({     
           name: candidateName_state,
           votes: 0,
+        topic: topic_state,
+        party: party_state,
       });
-      setCandidateName('');   {/* clear the form of the name that was entered */}
+      setCandidateName('');  
     };
   };
     return (
       <>
         <form onSubmit={processFormDataFunction}>
-          <label>
             <input  type='text' 
                     value={candidateName_state}
                     placeholder='Candidate Name'
-                    // annonymous arrow function that passes event to the expression
-                    // basically, update the state for every letter entered
                     onChange={event => setCandidateName(event.target.value)} />
-          </label>
+<br></br>            
+<select onChange={event => setTopic(event.target.value)}>
+  <option value="">Important Topic</option>
+  <option value="Education">Education</option>
+  <option value="Economy">Economy</option>
+  <option value="Environment">Environment</option>
+</select>
+
+<br></br>   
+<label><input type="radio" name="party" value="Democrat" 
+        onChange={event => setParty(event.target.value)}/>Democrat</label>
+<label><input type="radio" name="party" value="Republican" 
+        onChange={event => setParty(event.target.value)}/>Republican</label>
+<label><input type="radio" name="party" value="Green" 
+        onChange={event => setParty(event.target.value)}/>Green</label>
+<br></br>
+
           <button>Add Candidate</button>
         </form>
         <hr />
